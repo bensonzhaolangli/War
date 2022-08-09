@@ -5,36 +5,53 @@
 package war;
 
 /**
- *
- * @author benso
+ * @author Benson Li, Xavier Faria, Joshua Faria, John Paua
  */
 import java.util.ArrayList;
 
+/**
+ * This class models a Card Play Area wherein players place their
+ * cards to be used during a War Scenario.
+ */
 public class CardPlayArea extends GroupOfCards {
 
     private final ArrayList<Card> flippedCards = new ArrayList<>(); //keeps track of which cards are flipped
 
+    /**
+     * Constructor
+     */
     public CardPlayArea() {
         super(new ArrayList<>());
     }
 
-    //getters and setters
+    /**
+     * Access the ArrayList of flipped Cards.
+     * @return - the arrayList of flipped Cards. (ArrayList<Card>)
+     */
     public ArrayList<Card> getFlippedCards() {
         return this.flippedCards;
     }
-    
-    //return the card that was the most recently flipped
+
+    /**
+     * Access the last card that was flipped.
+     * @return - the most recently flipped Card. (Card)
+     */
     public Card getLastFlippedCard(){
         return flippedCards.get(flippedCards.size() - 1);
     }
 
-    //mark a card as flipped, so that when it is displayed, it's value is not hidden
+    /**
+     * Marks a card as flipped so that when it is displayed, it's value is shown
+     * and not hidden.
+     * @param card
+     */
     public void flipCard(Card card){
-        //This is important, do not 
         flippedCards.add(card);
     }
-    
-    //removes all the cards that were
+
+    /**
+     * Removes all cards played within the CardPlayArea.
+     */
     public void clearFlippedCards(){
         flippedCards.removeAll(flippedCards);
     }

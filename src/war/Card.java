@@ -5,31 +5,54 @@
 package war;
 
 /**
- * @author benso
+ * @author Benson Li, Xavier Faria, Joshua Faria, John Paua
  */
 public class Card implements Comparable<Card> {
 
+    /**
+     * Field Variables
+     */
     private Rank rank;
     private Suit suit;
 
-    // getters and setters
+    /**
+     * 2 parameter Constructor.
+     * @param rank - the Rank of the Card. (Rank)
+     * @param suit - the Suit of the Card. (Suit)
+     */
     public Card(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
+    /**
+     * Access the rank of a Card.
+     * @return - the rank of a Card. (Rank)
+     */
     public Rank getRank() {
         return rank;
     }
 
+    /**
+     * Set the rank of a Card.
+     * @param rank - the Rank to set to the Card. (Rank)
+     */
     public void setRank(Rank rank) {
         this.rank = rank;
     }
 
+    /**
+     * Access the Suit of a Card.
+     * @return - the Suit of the Card. (Suit)
+     */
     public Suit getSuit() {
         return suit;
     }
 
+    /**
+     * Set the Suit of a Card.
+     * @param suit - the Suit to set to the Card. (Suit)
+     */
     public void setSuit(Suit suit) {
         this.suit = suit;
     }
@@ -48,13 +71,13 @@ public class Card implements Comparable<Card> {
         return (Integer.compare(this.rank.getValue(), otherCard.rank.getValue()));
     }
 
-    // This method returns a String representation of the card object
+    // This method returns a String representation of the card object.
     @Override
     public String toString() {
         return rank.getShorthand() + suit.getIcon();
     }
 
-    //Check if the Card has same suit and rank as another
+    //Check if the Card has same suit and rank as another.
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -68,19 +91,24 @@ public class Card implements Comparable<Card> {
                 && this.getSuit() == card.getSuit();
     }
 
-    //    public enum Suit {
-//        CLUBS(), DIAMONDS, HEARTS, SPADES
-//    };
     public enum Suit {
 
         SPADES('\u2660'), HEARTS('\u2665'), DIAMONDS('\u2666'), CLUBS('\u2663');
 
         private final char icon;
 
+        /**
+         * One Parameter Constructor
+         * @param icon - the Suit's icon. (char)
+         */
         Suit(char icon) {
             this.icon = icon;
         }
 
+        /**
+         * Access the icon of the Suit.
+         * @return - the icon of the Suit. (char)
+         */
         public char getIcon() {
             return icon;
         }
@@ -104,15 +132,28 @@ public class Card implements Comparable<Card> {
         public final int value;
         public final String shorthand;
 
+        /**
+         * 2 Parameter Constructor
+         * @param value - the value of the Rank (int)
+         * @param shorthand - the shorthand text of the Rank (String)
+         */
         Rank(int value, String shorthand) {
             this.value = value;
             this.shorthand = shorthand;
         }
 
+        /**
+         * Access the value of the Rank.
+         * @return - the value of the Rank. (int)
+         */
         public int getValue() {
             return this.value;
         }
 
+        /**
+         * Access the shorthand text of the Rank.
+         * @return - the shorthand text of the Rank. (String)
+         */
         public String getShorthand() {
             return this.shorthand;
         }

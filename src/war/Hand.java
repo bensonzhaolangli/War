@@ -5,20 +5,23 @@
 package war;
 
 /**
- * @author benso
+ * @author Benson Li, Xavier Faria, Joshua Faria, John Paua
  */
 
 import java.util.ArrayList;
 
+/**
+ * This class models a player's hand (the total amount of cards
+ * available).
+ */
 public class Hand extends GroupOfCards {
 
+    /**
+     * Constructor that inherits from the Parent class.
+     */
     public Hand() {
         super(new ArrayList<>());
     }
-
-//    public Hand(ArrayList<Card> cards) {
-//        super(cards);
-//    }
 
     @Override
     public String toString() {

@@ -7,19 +7,23 @@ package war;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
 
 /**
- * @author benso
+ * @author Benson Li, Xavier Faria, Joshua Faria, John Paua
+ */
+
+/**
+ * This class runs the execution of the War card game.
  */
 public class Game {
 
+    /**
+     * Field Variables
+     */
     private final Deck deck;
     private final Player player1;
     private final Player player2;
     private int roundNo;
-
-    static GameManager gm = new GameManager();
 
     public Game() {
         this.deck = new Deck();
@@ -32,7 +36,8 @@ public class Game {
         System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8));
         Game game = new Game();
         try {
-            gm.start(game.player1, game.player2, game.deck, game.roundNo);
+            GameManager.Instance().startPrompt(game.player1, game.player2);
+            GameManager.Instance().runGame(game.player1, game.player2, game.deck, game.roundNo);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
