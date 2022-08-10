@@ -106,7 +106,6 @@ public class Player {
         if (this.hand.size() >= 4) {
             cardsPlayed = hand.removeCardsFromTop(playCount);
             playArea.addCardsToTop(cardsPlayed);
-//            playArea.flipCard(playArea.getCards().get(playArea.size() - 1));
         }
 
         return cardsPlayed;

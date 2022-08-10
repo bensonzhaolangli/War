@@ -10,8 +10,8 @@ package war;
 import java.util.ArrayList;
 
 /**
- * This class models a Card Play Area wherein players place their
- * cards to be used during a War Scenario.
+ * This class models a Card Play Area wherein players place their cards to be
+ * used during a War Scenario.
  */
 public class CardPlayArea extends GroupOfCards {
 
@@ -26,6 +26,7 @@ public class CardPlayArea extends GroupOfCards {
 
     /**
      * Access the ArrayList of flipped Cards.
+     *
      * @return - the arrayList of flipped Cards. (ArrayList<Card>)
      */
     public ArrayList<Card> getFlippedCards() {
@@ -34,28 +35,34 @@ public class CardPlayArea extends GroupOfCards {
 
     /**
      * Access the last card that was flipped.
+     *
      * @return - the most recently flipped Card. (Card)
      */
-    public Card getLastFlippedCard(){
-        return flippedCards.get(flippedCards.size() - 1);
+    public Card getLastFlippedCard() {
+        if (flippedCards.isEmpty()) {
+            return null;
+        } else {
+            return flippedCards.get(flippedCards.size() - 1);
+        }
     }
 
     /**
      * Marks a card as flipped so that when it is displayed, it's value is shown
      * and not hidden.
+     *
      * @param card
      */
-    public void flipCard(Card card){
+    public void flipCard(Card card) {
         flippedCards.add(card);
     }
 
     /**
      * Removes all cards played within the CardPlayArea.
      */
-    public void clearFlippedCards(){
+    public void clearFlippedCards() {
         flippedCards.removeAll(flippedCards);
     }
-    
+
     @Override
     public String toString() {
         StringBuilder cardsString = new StringBuilder();
@@ -65,7 +72,7 @@ public class CardPlayArea extends GroupOfCards {
             } else {
                 cardsString.append("XX" + " ");
             }
-            
+
         }
 
         return cardsString.toString();
