@@ -7,13 +7,12 @@ import java.util.Scanner;
 /**
  * @author Benson Li, Xavier Faria, Joshua Faria, John Paua
  */
-
 /**
- * This class handles methods the various sections of play (such as battling and war) within the War Card along
- * with starting the game. This class models the Singleton pattern seeing as only one GameManager needs to be created
- * to run and handle the functions of the game.
+ * This class handles methods the various sections of play (such as battling and
+ * war) within the War Card along with starting the game. This class models the
+ * Singleton pattern seeing as only one GameManager needs to be created to run
+ * and handle the functions of the game.
  */
-
 // Singleton Pattern - We've created a Singleton to allow for global access communication
 // between classes. Lazy instantiation allows the class to be accessed directly.
 // The game only needs one Manager to handle the gameplay so using the Single pattern
@@ -23,21 +22,22 @@ public class GameManager {
     private static GameManager _instance = null;
 
     public static GameManager Instance() {
-        if (_instance == null)
+        if (_instance == null) {
             _instance = new GameManager();
+        }
 
         return _instance;
     }
 
-
     /**
-     * Initiate a battle between players where the value of two players' cards (player1's card vs player2's)then
-     * returns whether the card compared was higher, even or lower in value than the card compared to.
+     * Initiate a battle between players where the value of two players' cards
+     * (player1's card vs player2's)then returns whether the card compared was
+     * higher, even or lower in value than the card compared to.
      *
      * @param player1 - Player1 of the game. (Player)
      * @param player2 - Player2 of the game. (Player)
-     * @return - Returns 1 if the player1's card value is higher,
-     * -1 if the card value is lower and 0 if even. (int)
+     * @return - Returns 1 if the player1's card value is higher, -1 if the card
+     * value is lower and 0 if even. (int)
      */
     public int battle(Player player1, Player player2) {
         //Both players play a card from their respective play areas.
@@ -53,8 +53,8 @@ public class GameManager {
      *
      * @param player1 - Player 1 of the game.
      * @param player2 - Player 2 of the game.
-     * @return - Returns 1 if the player1's card value is higher,
-     * -1 if the card value is lower and 0 if even. (int)
+     * @return - Returns 1 if the player1's card value is higher, -1 if the card
+     * value is lower and 0 if even. (int)
      */
     public int warCompare(Player player1, Player player2) {
         // Create an arrayList of WarCards from each player.
@@ -66,8 +66,7 @@ public class GameManager {
             return -1; // player2 wins.
         } else if (p2Cards == null) { // If player2 has no cards...
             return 1; // player1 wins.
-        } else
-        {
+        } else {
 
             // Create a card object and assign it to the card selected by player1.
             Card selection = warSelect(p1Cards, player1);
@@ -84,13 +83,13 @@ public class GameManager {
     }
 
     /**
-     * Run through a War Scenario in which the cards chosen by the players are compared,
-     * and the winner receives the cards played.
+     * Run through a War Scenario in which the cards chosen by the players are
+     * compared, and the winner receives the cards played.
+     *
      * @param player1 - Player1 of the game. (Player)
      * @param player2 - Player2 of the game. (Player)
      */
-    public void warRun(Player player1, Player player2)
-    {
+    public void warRun(Player player1, Player player2) {
         System.out.println("\nCards are tied. War begins!");
         int warResult = warCompare(player1, player2);
         System.out.printf("%-20s %-20s%n", "War Played: ", "War Played: ");
@@ -116,11 +115,12 @@ public class GameManager {
 
     /**
      * Select which the player would like to choose during a War scenario.
+     *
      * @param pCards - The cards drawn by the player for War. (ArrayList<Card>)
      * @param player - The player selecting the cards. (Player)
      * @return - Returns the Card chosen(flipped over) by the player. (Card)
      */
-     public Card warSelect(ArrayList<Card> pCards, Player player) {
+    public Card warSelect(ArrayList<Card> pCards, Player player) {
         Scanner input = new Scanner(System.in);
         System.out.println("\nPlease select a card to flip, " + player.getName() + ": ");
 //            System.out.println("1." + p1Cards.get(0) + " 2." + p1Cards.get(1) + " 3." + p1Cards.get(2) + " 4." + p1Cards.get(3));
@@ -128,14 +128,23 @@ public class GameManager {
 
         // Assign user selection to a variable.
         int pSelectCard = input.nextInt();
+        while (pSelectCard < 1 || pSelectCard > 4) {
+            System.out.println("That number is invalid.");
+            System.out.print("Enter either 1, 2, 3, or 4 ");
+            pSelectCard = input.nextInt();
+        }
         // Create a card object.
         Card pFlippedCard;
         // Assign the card object to the card selected by the User.
         pFlippedCard = switch (pSelectCard) {
-            case 1 -> pCards.get(0);
-            case 2 -> pCards.get(1);
-            case 3 -> pCards.get(2);
-            default -> pCards.get(3);
+            case 1 ->
+                pCards.get(0);
+            case 2 ->
+                pCards.get(1);
+            case 3 ->
+                pCards.get(2);
+            default ->
+                pCards.get(3);
         };
         // Return the card selected.
         return pFlippedCard;
@@ -143,25 +152,27 @@ public class GameManager {
 
     /**
      * Displays the round number and hand count of each player.
+     *
      * @param roundNo - The round number. (int)
      * @param player1 - Player1 of the game. (Player)
      * @param player2 - Player2 of the game. (Player)
      */
-    public void roundStart(int roundNo,Player player1,Player player2)
-    {
+    public void roundStart(int roundNo, Player player1, Player player2) {
         System.out.println("Round " + roundNo + "\n");
         System.out.printf("%-20s %-20s%n", player1.getName(), player2.getName());
         System.out.printf("%-20s  %-20s%n", player1.getHand(), player2.getHand());
     }
 
     /**
-     * Runs the game. Deals out a cards to both players and runs gameplay
-     * until one player no longer has any cards to play.
+     * Runs the game. Deals out a cards to both players and runs gameplay until
+     * one player no longer has any cards to play.
      *
      * @param player1 - Player 1 (Player)
      * @param player2 - Player 2 (Player)
-     * @param deck - The deck which the cards to the player are dealt from. (Deck)
-     * @param roundNo - The current round number. Incremented after every round. (int)
+     * @param deck - The deck which the cards to the player are dealt from.
+     * (Deck)
+     * @param roundNo - The current round number. Incremented after every round.
+     * (int)
      * @throws IOException - Throws an error if the user input is invalid.
      */
     public void runGame(Player player1, Player player2, Deck deck, int roundNo) throws IOException {
@@ -173,7 +184,7 @@ public class GameManager {
         //Battle until one of the players runs out of cards
         while (continueGame) {
             //Round Start
-            roundStart(roundNo,player1,player2);
+            roundStart(roundNo, player1, player2);
 
             //Create an assign a variable to result of player1's card compared to player2's card.
             int battleResult = battle(player1, player2);
@@ -224,7 +235,9 @@ public class GameManager {
     }
 
     /**
-     * Display the opening message of the game and prompt the players to enter their names.
+     * Display the opening message of the game and prompt the players to enter
+     * their names.
+     *
      * @param player1 - Player 1 of the game. (Player)
      * @param player2 - Player 2 of the game. (Player)
      */
@@ -241,11 +254,11 @@ public class GameManager {
 
     /**
      * Displays an end game message, declaring the winner.
+     *
      * @param player1 - Player1 of the game. (Player)
      * @param player2 - Player2 of the game. (Player)
      */
-    public void endGame(Player player1, Player player2)
-    {
+    public void endGame(Player player1, Player player2) {
         if (player1.getHand().size() > player2.getHand().size()) {
             System.out.println("\n" + player1.getName() + " wins the game!\n");
         } else if (player2.getHand().size() > player1.getHand().size()) {

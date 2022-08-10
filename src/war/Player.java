@@ -53,7 +53,14 @@ public class Player {
      * @param name - the name to set to the Player. (String)
      */
     public void setName(String name) {
-        this.name = name;
+        if(!name.matches("[a-zA-Z]+"))
+        {
+            IllegalArgumentException nameEx = new IllegalArgumentException
+                    ("Error: Player Name can only contain letters");
+            throw nameEx;
+        }
+        else
+            this.name = name;
     }
 
     /**

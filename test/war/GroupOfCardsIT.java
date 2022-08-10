@@ -207,16 +207,15 @@ public class GroupOfCardsIT {
         testHand.addCardToTop(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
 
         ArrayList<Card> result = testHand.removeCardsFromTop(removeCount);
-        
+
         ArrayList<Card> expResult = new ArrayList<>();
         expResult.add(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
         expResult.add(new Card(Card.Rank.FOUR, Card.Suit.HEARTS));
 
-        
         assertEquals(expResult, result);
     }
-    
-        /**
+
+    /**
      * Test of removeCardsFromTop method, of class GroupOfCards. This test will
      * give a bad input of removing cards form empty hand. Will return an empty
      * List.
@@ -229,10 +228,35 @@ public class GroupOfCardsIT {
         Hand testHand = new Hand();
 
         ArrayList<Card> result = testHand.removeCardsFromTop(removeCount);
-        
+
         ArrayList<Card> expResult = new ArrayList<>();
-        
+
         assertEquals(null, result);
+    }
+
+    /**
+     * Test of removeCardsFromTop method, of class GroupOfCards. This test will
+     * test the boundary input of removing 3 cards from a hard composed 
+     * of exactly 3 cards.
+     */
+    @Test
+    public void testRemoveCardsFromTopBoundary() {
+        System.out.println("Test removeCardsFromTop() Boundary");
+        int removeCount = 3;
+
+        Hand testHand = new Hand();
+        testHand.addCardToTop(new Card(Card.Rank.ACE, Card.Suit.CLUBS));
+        testHand.addCardToTop(new Card(Card.Rank.FOUR, Card.Suit.HEARTS));
+        testHand.addCardToTop(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
+
+        ArrayList<Card> result = testHand.removeCardsFromTop(removeCount);
+
+        ArrayList<Card> expResult = new ArrayList<>();
+        expResult.add(new Card(Card.Rank.JACK, Card.Suit.DIAMONDS));
+        expResult.add(new Card(Card.Rank.FOUR, Card.Suit.HEARTS));
+        expResult.add((new Card(Card.Rank.ACE, Card.Suit.CLUBS)));
+
+        assertEquals(expResult, result);
     }
 
     public class GroupOfCardsImpl extends GroupOfCards {
