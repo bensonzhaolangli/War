@@ -16,7 +16,16 @@ public class Card implements Comparable<Card> {
     private Suit suit;
 
     /**
+     * default constructor
+     */
+    public Card() {
+        this.rank = Rank.TWO;
+        this.suit = Suit.HEARTS;
+    }
+
+    /**
      * 2 parameter Constructor.
+     *
      * @param rank - the Rank of the Card. (Rank)
      * @param suit - the Suit of the Card. (Suit)
      */
@@ -27,6 +36,7 @@ public class Card implements Comparable<Card> {
 
     /**
      * Access the rank of a Card.
+     *
      * @return - the rank of a Card. (Rank)
      */
     public Rank getRank() {
@@ -35,6 +45,7 @@ public class Card implements Comparable<Card> {
 
     /**
      * Set the rank of a Card.
+     *
      * @param rank - the Rank to set to the Card. (Rank)
      */
     public void setRank(Rank rank) {
@@ -43,6 +54,7 @@ public class Card implements Comparable<Card> {
 
     /**
      * Access the Suit of a Card.
+     *
      * @return - the Suit of the Card. (Suit)
      */
     public Suit getSuit() {
@@ -51,6 +63,7 @@ public class Card implements Comparable<Card> {
 
     /**
      * Set the Suit of a Card.
+     *
      * @param suit - the Suit to set to the Card. (Suit)
      */
     public void setSuit(Suit suit) {
@@ -99,6 +112,7 @@ public class Card implements Comparable<Card> {
 
         /**
          * One Parameter Constructor
+         *
          * @param icon - the Suit's icon. (char)
          */
         Suit(char icon) {
@@ -107,6 +121,7 @@ public class Card implements Comparable<Card> {
 
         /**
          * Access the icon of the Suit.
+         *
          * @return - the icon of the Suit. (char)
          */
         public char getIcon() {
@@ -134,6 +149,7 @@ public class Card implements Comparable<Card> {
 
         /**
          * 2 Parameter Constructor
+         *
          * @param value - the value of the Rank (int)
          * @param shorthand - the shorthand text of the Rank (String)
          */
@@ -144,6 +160,7 @@ public class Card implements Comparable<Card> {
 
         /**
          * Access the value of the Rank.
+         *
          * @return - the value of the Rank. (int)
          */
         public int getValue() {
@@ -152,6 +169,7 @@ public class Card implements Comparable<Card> {
 
         /**
          * Access the shorthand text of the Rank.
+         *
          * @return - the shorthand text of the Rank. (String)
          */
         public String getShorthand() {

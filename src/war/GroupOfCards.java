@@ -79,6 +79,9 @@ abstract class GroupOfCards {
      * @return - An ArrayList of the removed cards. (ArrayList<Card>)
      */
     public ArrayList<Card> removeCardsFromTop(int removeCount) {
+        if(this.getCards().size() < removeCount){
+            return null;
+        }
         ArrayList<Card> removedCards = new ArrayList<>();
         for (int i = 0; i < removeCount; i++) {
             removedCards.add(this.cards.remove(this.size() - 1));
