@@ -61,7 +61,7 @@ public class PlayerIT {
      */
     @Test
     public void testPlayWarCards() {
-        System.out.println("Test playCard Good");
+        System.out.println("Test playWarCards Good");
 
         Player testPlayer = new Player();
         testPlayer.getHand().addCardToTop(new Card(Card.Rank.ACE, Card.Suit.CLUBS));
